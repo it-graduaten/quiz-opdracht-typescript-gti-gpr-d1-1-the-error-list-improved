@@ -1,8 +1,8 @@
 import Question from "./models/Question";
 import QuizApp from "./models/Quiz";
-import { GameMode } from "./types/enum/GameMode";
-import { QuestionMode } from "./types/enum/QuestionMode";
-import { IAnswer } from "./types/interfaces/IAnswer";
+import {GameMode} from "./types/enum/GameMode";
+import {QuestionMode} from "./types/enum/QuestionMode";
+import {IAnswer} from "./types/interfaces/IAnswer";
 
 window.addEventListener('load', () => {
 
@@ -98,7 +98,7 @@ window.addEventListener('load', () => {
         const q = document.getElementById("txt-question") as HTMLInputElement;
         const btnCloseModal = document.getElementById("btnCloseModal") as HTMLButtonElement;
         if (!validateQuestionInput(q.value, questionAnswers)) {
-            alert("Please fill in the question and provide at least one answer with the correct option.");
+            alert("Please fill in the question (atleast 5 words long) and provide at least one answer with the correct option.");
             return;
         }
         const question = new Question(q.value);
@@ -116,6 +116,10 @@ window.addEventListener('load', () => {
     document.getElementById("btn-add-answer")?.addEventListener('click', () => {
         const answer = document.getElementById("txt-answer") as HTMLInputElement;
         const chkAnswer = document.getElementById("chk-correct") as HTMLInputElement;
+        if (answer.value.trim() === "") {
+            alert("Answer cannot be empty.");
+            return;
+        }
         const a: IAnswer = {
             text: answer.value,
             isCorrect: chkAnswer.checked
@@ -242,9 +246,11 @@ window.addEventListener('load', () => {
     };
 
     const validateQuestionInput = (questionText: string, answers: IAnswer[]): boolean => {
-        // implement validation logic, return true if the input is valid
-        // logic: questionText should have at least 5 characters, answers should have at least one correct answer
-        return true
+        const words = questionText.trim().split(/\s+/);
+        if (words.length < 5) {
+            return false;
+        }
+        return answers.some(answer => answer.isCorrect);
     };
 
     const showCurrentPlayerBlock = () => {
@@ -259,5 +265,6 @@ window.addEventListener('load', () => {
     }
 
     init();
+
 
 });
