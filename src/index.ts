@@ -116,6 +116,10 @@ window.addEventListener('load', () => {
     document.getElementById("btn-add-answer")?.addEventListener('click', () => {
         const answer = document.getElementById("txt-answer") as HTMLInputElement;
         const chkAnswer = document.getElementById("chk-correct") as HTMLInputElement;
+        if (answer.value.trim() === "") {
+            alert("Answer cannot be empty.");
+            return;
+        }
         const a: IAnswer = {
             text: answer.value,
             isCorrect: chkAnswer.checked
