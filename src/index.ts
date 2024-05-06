@@ -1,8 +1,8 @@
 import Question from "./models/Question";
 import QuizApp from "./models/Quiz";
-import { GameMode } from "./types/enum/GameMode";
-import { QuestionMode } from "./types/enum/QuestionMode";
-import { IAnswer } from "./types/interfaces/IAnswer";
+import {GameMode} from "./types/enum/GameMode";
+import {QuestionMode} from "./types/enum/QuestionMode";
+import {IAnswer} from "./types/interfaces/IAnswer";
 
 window.addEventListener('load', () => {
 
@@ -242,9 +242,11 @@ window.addEventListener('load', () => {
     };
 
     const validateQuestionInput = (questionText: string, answers: IAnswer[]): boolean => {
-        // implement validation logic, return true if the input is valid
-        // logic: questionText should have at least 5 characters, answers should have at least one correct answer
-        return true
+        const words = questionText.trim().split(/\s+/);
+        if (words.length < 5) {
+            return false;
+        }
+        return answers.some(answer => answer.isCorrect);
     };
 
     const showCurrentPlayerBlock = () => {
