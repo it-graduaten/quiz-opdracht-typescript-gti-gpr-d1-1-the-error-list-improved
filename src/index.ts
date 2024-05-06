@@ -132,6 +132,16 @@ window.addEventListener('load', () => {
         const input = document.getElementById("player-name") as HTMLInputElement;
         const name = input.value.trim();
 
+        if (name ===""){
+            alert("Player name is required");
+            input.value = "";
+            return;
+        }
+        if(quizApp.players.some(player => player.name.toLowerCase() === name.toLowerCase())){
+            alert("Player name must be unique");
+            input.value = "";
+            return;
+        }
         quizApp.addPlayer(name);
         input.value = "";
 
