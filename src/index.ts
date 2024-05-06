@@ -98,7 +98,7 @@ window.addEventListener('load', () => {
         const q = document.getElementById("txt-question") as HTMLInputElement;
         const btnCloseModal = document.getElementById("btnCloseModal") as HTMLButtonElement;
         if (!validateQuestionInput(q.value, questionAnswers)) {
-            alert("Please fill in the question and provide at least one answer with the correct option.");
+            alert("Please fill in the question (atleast 5 words long) and provide at least one answer with the correct option.");
             return;
         }
         const question = new Question(q.value);
