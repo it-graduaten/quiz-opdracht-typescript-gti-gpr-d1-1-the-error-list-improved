@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/QzE4UYQv)
 # Happy Coding Quiz App
 
 This is a simple quiz application designed for happy coding and learning purposes. The app allows users to create custom questions, fetch questions from an API, manage players, and conduct quizzes in both single-player and multiplayer modes. The app is built using HTML, CSS, and JavaScript, and it is designed to be simple, user-friendly, and easy to customize. The app is responsive and can be used on any device. Enjoy coding and learning!
