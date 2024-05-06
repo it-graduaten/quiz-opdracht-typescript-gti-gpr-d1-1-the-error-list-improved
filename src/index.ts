@@ -16,7 +16,6 @@ window.addEventListener('load', () => {
     const divQuestionApiContainer = document.getElementById("question-api-container") as HTMLElement;
     const divCurrentPlayer = document.getElementById("current-player-container") as HTMLElement;
 
-
     //navigatie
     document.getElementById("aQuestions")?.addEventListener('click', () => {
         quizApp.questionMode === QuestionMode.Custom ? updateVisibleItem(divQuestionsContainer) : updateVisibleItem(divQuestionApiContainer);
@@ -59,12 +58,17 @@ window.addEventListener('load', () => {
         updateVisibleItem(divCurrentPlayer);
     });
 
-
     document.getElementById("btn-next")?.addEventListener('click', () => {
         updateVisibleItem(divPlayersContainer);
     });
 
     // implement logic to set the game mode
+    document.getElementById("gameMode")?.addEventListener("click", () => {
+        let modeSwitch = document.getElementById("gameMode") as HTMLInputElement;
+        const modeSwitchLabel = document.getElementById("txtGameMode") as HTMLSpanElement;
+        if (modeSwitch.checked) modeSwitchLabel.innerText = GameMode.Multi;
+        else modeSwitchLabel.innerText = GameMode.Single;
+    })
     // implement logic to set the number of players
 
     document.getElementById("txtNumberQuestions")?.addEventListener("change", (e) => {
@@ -85,9 +89,8 @@ window.addEventListener('load', () => {
             updateVisibleItem(divQuestionsContainer);
             const noQuestionText = document.getElementById("no-questions") as HTMLElement;
             noQuestionText.innerText = `No questions have been added yet. Add ${quizApp.quizDuration * quizApp.numberOfPlayers} questions to start.`;
-        } else {
-            updateVisibleItem(divQuestionApiContainer);
-        }
+        } else updateVisibleItem(divQuestionApiContainer);
+
 
     });
 
